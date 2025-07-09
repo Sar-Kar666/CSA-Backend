@@ -20,7 +20,7 @@ const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
-    origin: ["https://course-selling-website-gxal.vercel.app/"],
+    origin: ["https://course-selling-website-gxal.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true
 }));
