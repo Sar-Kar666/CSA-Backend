@@ -25,6 +25,9 @@ app.use((0, cors_1.default)({
     methods: ["POST", "GET"],
     credentials: true
 }));
+app.get("/", (_, res) => {
+    res.send("API is running!");
+});
 app.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const username = req.body.username;
