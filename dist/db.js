@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.USermodel = void 0;
 const mongoose_1 = require("mongoose");
 const mongoose_2 = __importDefault(require("mongoose"));
-mongoose_2.default.connect("mongodb+srv://diptanusarkar3020:200232%4012@cluster1.wf334v7.mongodb.net/Course-Selling-App?retryWrites=true&w=majority&appName=Cluster1");
+mongoose_2.default.connect("mongodb+srv://diptanusarkar3020:taq2YRLqI3CJIGhW@cluster12.jqdns3v.mongodb.net/?retryWrites=true&w=majority&appName=Cluster12");
 const UserSchema = new mongoose_1.Schema({
     email: String,
     username: { type: String, unique: true },
