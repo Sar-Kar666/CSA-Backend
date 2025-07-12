@@ -10,22 +10,11 @@ const PORT = process.env.PORT || 3000;
 
 const app= express();
 app.use(express.json());
-const allowedOrigins = [
-  "http://localhost:5173", 
-  "https://course-selling-website-gxal.vercel.app"
-];
-
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: ["https://course-selling-website-gxal.vercel.app"],
   methods: ["GET", "POST"],
   credentials: true
-}));
+}))
 
 
 app.get("/", (_, res) => {
