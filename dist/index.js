@@ -20,9 +20,20 @@ const cors_1 = __importDefault(require("cors"));
 const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://course-selling-website-gxal.vercel.app"
+];
 app.use((0, cors_1.default)({
-    origin: ["https://course-selling-website-gxal.vercel.app"],
-    methods: ["POST", "GET"],
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    methods: ["GET", "POST"],
     credentials: true
 }));
 app.get("/", (_, res) => {
