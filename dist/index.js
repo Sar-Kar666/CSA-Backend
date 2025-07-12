@@ -17,7 +17,7 @@ const db_1 = require("./db");
 const JWT_PASSWORD = "askdasmdkas;mdkasd";
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const cors_1 = __importDefault(require("cors"));
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
@@ -66,3 +66,6 @@ app.post("/signin", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
 }));
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

@@ -4,7 +4,7 @@ import { USermodel } from "./db";
 const JWT_PASSWORD="askdasmdkas;mdkasd";
 import jwt from "jsonwebtoken";
 import cors from "cors";
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 
 
@@ -77,3 +77,6 @@ app.post("/signin", async (req,res)=>{
        
 })
 
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
