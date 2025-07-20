@@ -11,12 +11,12 @@ const admin_1 = require("./routes/admin");
 const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-// app.use(cors({
-//   origin: ["https://course-selling-website-delta.vercel.app"],
-//   methods: ["GET", "POST"],
-//   credentials: true
-// }))
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: ["https://course-selling-website-delta.vercel.app"],
+    methods: ["GET", "POST"],
+    credentials: true
+}));
+// app.use(cors());
 app.use("/user", user_1.userRouter);
 app.use("courses", courses_1.courseRouter);
 app.use("/admin", admin_1.adminRouter);

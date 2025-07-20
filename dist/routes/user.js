@@ -46,7 +46,8 @@ userRouter.post("/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
     });
     if (existingUser) {
         const token = jsonwebtoken_1.default.sign({
-            id: existingUser._id
+            id: existingUser._id,
+            role: "user"
         }, JWT_PASSWORD);
         res.json({
             token

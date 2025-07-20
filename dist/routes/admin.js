@@ -45,7 +45,8 @@ adminRouter.post("/signin", function (req, res) {
         });
         if (admin) {
             const token = jsonwebtoken_1.default.sign({
-                id: admin._id
+                id: admin._id,
+                role: "admin"
             }, JWT_ADMIN_PASSWORD);
             // Do cookie logic
             res.json({
