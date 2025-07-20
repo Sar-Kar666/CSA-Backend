@@ -39,6 +39,7 @@ userRouter.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 }));
 userRouter.post("/signin", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    //encrypt the password
     const email = req.body.email;
     const password = req.body.password;
     const existingUser = yield db_1.USermodel.findOne({

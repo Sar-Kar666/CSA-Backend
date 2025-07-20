@@ -35,7 +35,7 @@ userRouter.post("/signup", async (req,res)=>{
 
 
 userRouter.post("/signin", async (req,res)=>{
-    
+    //encrypt the password
     const email = req.body.email;
     const password = req.body.password;
     const existingUser= await USermodel.findOne({
