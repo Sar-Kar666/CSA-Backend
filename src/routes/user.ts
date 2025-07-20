@@ -1,6 +1,6 @@
 import express from "express";
 import { Router } from "express";
-import { USermodel } from "../db";
+import { Coursemodel, Purchasemodel, USermodel } from "../db";
 import jwt from "jsonwebtoken";
 import { userMiddleware } from "../middleware/userMiddleware";
 const JWT_PASSWORD="askdasmdkas;mdkasd";
@@ -44,7 +44,8 @@ userRouter.post("/signin", async (req,res)=>{
         
         if(existingUser){
             const token= jwt.sign({
-                    id: existingUser._id
+                    id: existingUser._id,
+                    role:"user"
                     
             },JWT_PASSWORD)
            
@@ -64,16 +65,29 @@ userRouter.post("/signin", async (req,res)=>{
     })
 
 
-    // userRouter.get("/purchases",userMiddleware, async function (req,res) {
-    //     //@ts-ignore
-    //     const userId=req.userId;
+    userRouter.get("/purchases",userMiddleware, async function (req,res) {
+        //@ts-ignore
+        const userId=req.userId;
 
-    //     const purchases= await purchaseModel.find({
-    //         userId
-    //     });
+        const purchases= await Purchasemodel.find({
+            userId
+        });
+ let purchasedCourseIds = [];
 
+    for (let i = 0; i<purchases.length;i++){ 
+        purchasedCourseIds.push(purchases[i].courseId)
+    }
 
-    // })
+    const coursesData = await Coursemodel.find({
+        _id: { $in: purchasedCourseIds }
+    })
+
+    res.json({
+        purchases,
+        coursesData
+    })
+
+    })
 
 
 export {userRouter};

@@ -16,6 +16,7 @@ exports.userRouter = void 0;
 const express_1 = require("express");
 const db_1 = require("../db");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const userMiddleware_1 = require("../middleware/userMiddleware");
 const JWT_PASSWORD = "askdasmdkas;mdkasd";
 const userRouter = (0, express_1.Router)();
 exports.userRouter = userRouter;
@@ -57,3 +58,23 @@ userRouter.post("/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
     }
 }));
+userRouter.get("/purchases", userMiddleware_1.userMiddleware, function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        //@ts-ignore
+        const userId = req.userId;
+        const purchases = yield db_1.Purchasemodel.find({
+            userId
+        });
+        let purchasedCourseIds = [];
+        for (let i = 0; i < purchases.length; i++) {
+            purchasedCourseIds.push(purchases[i].courseId);
+        }
+        const coursesData = yield db_1.Coursemodel.find({
+            _id: { $in: purchasedCourseIds }
+        });
+        res.json({
+            purchases,
+            coursesData
+        });
+    });
+});

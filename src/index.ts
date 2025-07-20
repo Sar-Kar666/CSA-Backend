@@ -1,8 +1,8 @@
 import express from "express";
-import mongoose from "mongoose";
-import { USermodel } from "./db";
 import { userRouter } from "./routes/user";
 import cors from "cors";
+import { courseRouter } from "./routes/courses";
+import { adminRouter } from "./routes/admin";
 
 
 const PORT = process.env.PORT || 3000;
@@ -22,6 +22,8 @@ app.use(cors());
 
 
 app.use("/user",userRouter);
+app.use("courses",courseRouter);
+app.use("/admin",adminRouter);
 
 
 app.get("/", (_, res) => {

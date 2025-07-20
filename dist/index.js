@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const user_1 = require("./routes/user");
 const cors_1 = __importDefault(require("cors"));
+const courses_1 = require("./routes/courses");
+const admin_1 = require("./routes/admin");
 const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
@@ -16,6 +18,8 @@ app.use(express_1.default.json());
 // }))
 app.use((0, cors_1.default)());
 app.use("/user", user_1.userRouter);
+app.use("courses", courses_1.courseRouter);
+app.use("/admin", admin_1.adminRouter);
 app.get("/", (_, res) => {
     res.send("API is running!");
 });
