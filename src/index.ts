@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 const app= express();
 app.use(express.json());
 app.use(cors({
-  origin: ["https://course-selling-website-delta.vercel.app"],
+  origin: ["https://course-selling-website-gxal.vercel.app"],
   methods: ["GET", "POST"],
   credentials: true
 }))
