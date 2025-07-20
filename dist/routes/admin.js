@@ -79,24 +79,6 @@ adminRouter.post("/course", adminMiddleware_1.adminMiddleware, function (req, re
         });
     });
 });
-adminRouter.post("/course", adminMiddleware_1.adminMiddleware, function (req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        //@ts-ignore
-        const adminId = req.userId;
-        const { title, description, imageUrl, price } = req.body;
-        const course = yield db_1.Coursemodel.create({
-            title: title,
-            description: description,
-            imageUrl: imageUrl,
-            price: price,
-            creatorId: adminId
-        });
-        res.json({
-            message: "Course created",
-            courseId: course._id
-        });
-    });
-});
 adminRouter.put("/course", adminMiddleware_1.adminMiddleware, function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         //@ts-ignore
