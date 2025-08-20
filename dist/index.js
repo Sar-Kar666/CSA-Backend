@@ -8,6 +8,7 @@ const user_1 = require("./routes/user");
 const courses_1 = require("./routes/courses");
 const admin_1 = require("./routes/admin");
 const cors_1 = __importDefault(require("cors"));
+const axios_1 = __importDefault(require("axios"));
 const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
@@ -23,6 +24,17 @@ app.use("/admin", admin_1.adminRouter);
 app.get("/", (_, res) => {
     res.send("API is running!");
 });
+const url = `https://render-hosting-se2b.onrender.com`;
+const interval = 30000;
+function reloadWebsite() {
+    axios_1.default.get(url).then((response) => {
+        console.log("website reloded");
+    })
+        .catch((error) => {
+        console.error(`Error : ${error.message}`);
+    });
+}
+setInterval(reloadWebsite, interval);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
